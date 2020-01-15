@@ -50,4 +50,57 @@
 
 理解字典最好的方式是将他看作一个 键-值 对的集合，一对 {} 可以创建一个空字典
 
+## 循环的技巧
+
+1. 在字典中循环时。用items()可将关键字和对应的值同时取出
+~~~python
+knights = {'gallahad':'the pure','robin':'the brave'}
+for k,v in knights.items():
+    print(k,v)
+~~~
+
+2. 当在序列中循环时，用 enumerate() 函数可以将索引位置和其对应的值同时取出
+
+~~~python
+for i,v in enumerate(['tic','tac','toe']):
+    print(i, v)
+~~~
+
+3. 当同时在两个或更多序列中循环时，可以用 zip() 函数将其内元素一一匹配
+
+~~~python
+questions = ['name','age','gender']
+answers = ['张三', 18, '男']
+for q,a in zip(questions,answers):
+    print(q,a)
+~~~
+
+## 条件控制
+
+- 在与不在： in、not in
+- 大小比较: &gt;、&lt;、==、&gt;=、&lt;=、!=
+- 布尔运算: and、or,它们都是短路运算
+
+**注意点**:
+1. 比较操作可以传递。例如`a < b == c` 会校验是否 a 小于 b 并且 b 等于 c
+2. 可以把比较运算或者逻辑表达式赋值给一个变量，例如
+~~~python
+non_null = string1 or string2 or string3
+print(non_null)     #string1
+~~~
+
+## 序列和其他类型的比较
+
+序列对象通常可以与相同序列类型的其他对象比较。这种比较使用字典式顺序,例如
+~~~
+(1,2,3) < (1,2,4)
+[1,2,3] < [1,2,4]
+'ABC' < 'C' < 'Pascal' < 'Python'
+(1,2) < -1
+~~~
+
+注意对不同类型对象来说，只要待比较对象提供了合适的比较方法，就可以使用 < 和 > 来比较。例如，混合数值类型是通过他们的数值进行比较的，所以 0 等于 0.0，等等。否则，解释器将抛出一个 TypeError 异常，而不是随便给出一个结果。
+
+
+
 
